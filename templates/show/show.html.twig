@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ post.artist }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid haut">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 d-flex flex-column justify-content-start">
+                            <div class="mb-3">
+                                <h2 class="wtitle">{{ post.artist }}</h2>
+                            </div>
+                            <div class="mb-3 wrubrique">
+                                {{ post.rubrik.name|upper }}
+                            </div>
+                            <div class="mb-3 date">
+                                {{ post.date|upper }}
+                            </div>
+                            <div class="mb-3 price">
+                                {{ post.price|upper }}
+                            </div>
+                            <div class="wrapperss">
+                                <a href="{{ post.link|lower }}" target="_blank" class="wtextes">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-center">
+                            {% if post.image is not empty %}
+                                <img class="img-fluid" src="{{ asset('divers/images/' ~ post.image) }}" alt="Image du post" loading="lazy"/>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row content">
+                        <div class="col-md-12">
+                            <div class="col-md-12 mb-3 wtexte">
+                                {{ post.content|raw }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row wtexte">
+                        {% if post.comments|length < 1 %}
+                            <p>Il n'y a pas encore de commentaires pour ce post.</p>
+                        {% else %}
+                            <p>{{ post.comments|length }} Commentaire(s)</p>
+                        {% endif %}
+                    </div>
+                    <div class="row mb-3 wrapper">
+                        {% if app.user %}
+                            <button id="toggle-comment-form" class="col-md-4 btn btn-sm mb-3 wtextes">
+                                Ajouter un commentaire
+                            </button>
+                            <div id="comment-form-container" style="display: none;">
+                                {{ form_start(comment_form) }}
+                                {{ form_widget(comment_form.content) }}
+                                {{ form_errors(comment_form.content) }}
+                                {{ form_widget(comment_form.save) }}
+                                {{ form_end(comment_form) }}
+                            </div>
+                        {% else %}
+                            <p>
+                                <a href="{{ path('app_login') }}">Connectez-vous</a> pour laisser un commentaire.
+                            </p>
+                        {% endif %}
+                    </div>
+                    <div class="row wrapper">
+                        <button id="toggle-comments" class="col-md-4 btn btn-sm mb-3 wtextes">
+                            Lire les commentaire(s)
+                        </button>
+                        <div id="comments-container" style="display: none;" class="com">
+                            {% for comment in comments %}
+                                <div class="comment border-bottom pb-3">
+                                    <div class="row">
+                                        <div class="col-md-1 pseudo">
+                                            <img class="img-fluid roundedImage" src="{{ asset('divers/avatars/' ~ comment.user.avatar) }}" alt="avatar"/>
+                                        </div>
+                                        <div class="col-md-8 pt-2 userName text-start">{{ comment.user.pseudo|capitalize }}</div>
+                                        <div class="col-md-2 text-end">{{ comment.createdAt|date('H:i') }}</div>
+                                    </div>
+                                    <div class="col-md-12" style="padding-left:75px; font-size:1.3em;">
+                                        {{ comment.content|capitalize }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('toggle-comment-form').addEventListener('click', function () {
+            var formContainer = document.getElementById('comment-form-container');
+            formContainer.style.display = formContainer.style.display === 'none' || formContainer.style.display === '' ? 'block' : 'none';
+        });
+
+        document.getElementById('toggle-comments').addEventListener('click', function () {
+            var commentsContainer = document.getElementById('comments-container');
+            commentsContainer.style.display = commentsContainer.style.display === 'none' || commentsContainer.style.display === '' ? 'block' : 'none';
+        });
+    </script>
+{% endblock %}

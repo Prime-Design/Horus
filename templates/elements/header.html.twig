@@ -1,0 +1,98 @@
+<body>
+	<div class="container-fluid bord">
+		<div class="row d-flex ">
+			<div class="col-4 d-flex justify-content-start">
+
+				<button type="button" aria-label="toggle curtain navigation" class="nav-toggler" style="margin-top: 25px;">
+
+					<span class="line l1"></span>
+					<span class="line l2"></span>
+					<span class="line l3"></span>
+				</button>
+			</div>
+
+			<nav class="zindex">
+				<ul>
+					<li class="nav-item dropdown pop colorsss">
+						<a class="colorsss" href="{{path('posts_by_rubrik', {id: 1}) }}" role="button" aria-expanded="false">
+
+							POP
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="colorsss" href="{{path('posts_by_rubrik', {id: 2}) }}" role="button" aria-expanded="false">
+
+							Hard Rock
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="colorsss" href="{{path('posts_by_rubrik', {id: 3}) }}" role="button" aria-expanded="false">
+
+							SOUL / JAZZ
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="colorsss" href="{{path('posts_by_rubrik', {id: 4}) }}" role="button" aria-expanded="false">
+
+							Hip Hop
+						</a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="colorsss" href="{{path('posts_by_rubrik', {id: 5}) }}" role="button" aria-expanded="false">
+
+							Classique
+						</a>
+					</li>
+
+				</ul>
+
+
+			</nav>
+
+<div class="col-4 text-center">
+	<a style="text-decoration: none;" href="#">
+		<a class="navbar-brand mr-3" href="{{ path('app_post') }}">
+			<img class="hlogo" src="{{ asset('divers/images/logo.png') }}" alt="Logo" loading="lazy">
+		</a>
+	</a>
+</div>
+
+
+			<div class="col-12 col-md-4 text-center d-flex hlogggin">
+				<div class="header-social-links d-flex justify-content-center justify-content-md-end align-items-center zxdroite">
+					{% if app.user %}
+						<div class="user-info d-flex align-items-center">
+							{% if app.user.avatar is empty %}
+								<i class="fa-solid fa-user-tie user-icon"></i>
+							{% else %}
+								<img class="roundedImage" src="{{ asset('divers/avatars/' ~ app.user.avatar) }}" alt="Avatar">
+								<span class="zxfirstname">{{ app.user.pseudo|capitalize }}</span>
+							{% endif %}
+						</div>
+						<a class="loggouts" href="{{ path('app_logout') }}">
+							<i class="fa-solid fa-power-off" aria-hidden="true"></i>
+							<span class="sr-only">Déconnexion</span>
+						</a>
+
+						{% if app.user.opption is same as('yes') %}
+							<a class="zxadmin" href="{{ path('admin') }}">
+								<i class="fa-solid fa-laptop" aria-hidden="true"></i>
+								<span class="sr-only">Accéder à l'administration</span>
+							</a>
+
+
+						{% endif %}
+					{% else %}
+						<a class="mylog" href="{{ path('app_login') }}">
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABdUlEQVR4nO2Wv0oDQRDGV0TF+mYCimUqu9yMEOxFFLTzYbTRpPUFAiKIiKKgaGHhv0bkgpDEmdPKl4msSDw0JrubEwTzwTZ3u/e72ZlvZ40ZaqgPtY0Z0bhQVsaqEF4IQ10IEmE4t8/SuYjtHJOnlKNVJXhSxnavIQQiMS4ODEzKM5NKuNsP+O0HGHdeZs14EPS1WJwQhmtfaCb62yC4EuyHQrOR+0EZlgaFduA+ORcGzQ1MIE7V/sw43/UjhEcNgiklPPaFpzGQS7Sb3cGwbd+frJlRYTz0hFedwEJw83Uow5UwlDpwwgNnMMGpyUsWrgwPbtUN9b8JVoaNbtv8q1ud2OOx9+Lw4iKs9IxYGNeF8f4nOzVL0XSInZQg7ps7a3Zr+rwOECVsObdL4WglL3BKhQUn6Ccc9nIA10xIW1TGu1CodUKDzJg3ONOTQyKvBUOzSgmWnToWYcs7py5671yEFWG8VMZHe9lTgjMl3HKyzFD/Sm8g9e3SxPp5qQAAAABJRU5ErkJggg==" alt="Login">
+						</a>
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="script.js"></script>
+
+</body>

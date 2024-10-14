@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ rubrik.name }}
+{% endblock %}
+
+{% block body %}
+
+	<body>
+		<div class="container-fluid">
+			<div class="container">
+				<div class="row ">
+
+
+					{% for posts in posts %}
+
+
+						<a class="col-md-4 text-decoration-none" href="{{path('show', {'slug':posts.slug, id: posts.id})}}">
+
+
+							<div class="row">
+								{% if posts.image is not empty %}
+									<div class="img-rubrik c-glitch">
+
+
+										<img class="img-fluid c-glitch__img " src="{{ asset('divers/images/' ~ posts.image) }}" alt="Image du post" loading="lazy"/>
+
+										<img class="img-fluid c-glitch__img " src="{{ asset('divers/images/' ~ posts.image) }}" alt="Image du post" loading="lazy"/>
+
+										<img class="img-fluid c-glitch__img " src="{{ asset('divers/images/' ~ posts.image) }}" alt="Image du post" loading="lazy"/>
+
+										<img class="img-fluid c-glitch__img " src="{{ asset('divers/images/' ~ posts.image) }}" alt="Image du post" loading="lazy"/>
+
+										<img class="img-fluid c-glitch__img " src="{{ asset('divers/images/' ~ posts.image) }}" alt="Image du post" loading="lazy"/>
+
+
+									</div>
+								{% endif %}
+
+								<div class="col-md-12 artists">
+
+									{{ posts.artist }}
+								</div>
+
+
+							</div>
+
+
+						</a>
+
+					{% endfor %}
+
+
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+
+
+{% endblock %}

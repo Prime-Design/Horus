@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Enregistrez vous
+{% endblock %}
+
+{% block body %}
+	<!-- Button trigger modal -->
+
+	<div class="container-fluid font" style="padding-top:100px;">
+		<div class="container">
+			<div class="row center ">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<h1 class="mb-4 title" style="text-align:center;">Formulaire d'inscription</h1>
+
+					<form method="Post" enctype="multipart/form-data">
+						{{ form_errors(registrationForm) }}
+
+						{{ form_start(registrationForm) }}
+
+						{{ form_widget(registrationForm._token) }}
+
+
+						<div class="mb-3">{{ form_widget(registrationForm.firstname, { attr: { class: 'form-control', placeholder: 'Firstname' } }) }}</div>
+
+						<div class="mb-3">{{ form_widget(registrationForm.lastname, { attr: { class: 'form-control', placeholder: 'Lastname' } }) }}</div>
+
+						<div class="mb-3 text-white">{{ form_widget(registrationForm.email, { attr: { class: 'form-control', placeholder: 'Email' } }) }}
+
+							{{ form_errors(registrationForm.email) }}
+						</div>
+
+
+						<div class="mb-3 text-white">{{ form_widget(registrationForm.pseudo, { attr: { class: 'form-control', placeholder: 'Pseudo' } }) }}
+
+							{{ form_errors(registrationForm.pseudo) }}
+						</div>
+
+						<div class="mb-3 text-white">{{ form_widget(registrationForm.city, { attr: { class: 'form-control', placeholder: 'City' } }) }}
+
+							{{ form_errors(registrationForm.city) }}
+						</div>
+
+
+						<div class="mb-3">
+							{{ form_widget(registrationForm.avatar, { attr: { class: 'form-control' }, type: 'file', mapped: false }) }}
+						</div>
+						<div class="mb-3 text-white">
+
+							{{ form_widget(registrationForm.country, { attr: { class: 'form-control', placeholder: 'Country' } }) }}
+							{{ form_errors(registrationForm.country) }}
+						</div>
+
+						<div class="mb-3 text-white">{{ form_widget(registrationForm.plainPassword, { label: 'Password', attr: { class: 'form-control', placeholder: 'Entrez votre mot de passe' } }) }}
+							{{ form_errors(registrationForm.plainPassword) }}
+
+						</div>
+						<div class="mb-3">
+							<label class="form-check-label rgpd">RGPD</label>&emsp;&emsp;
+							{{ form_widget(registrationForm.agreeTerms, { attr: { class: 'form-check-input' } }) }}
+						</div>
+
+						<div class="row mb-5 wrapper">
+							<div class="col-md-6">
+								<button type="submit" class="btn btn-sm wtextes">S'enregistrer</button>
+							</div>
+
+							<div class="col-md-6">
+								<div class="row wrappers">
+									<div class="col-md-6 rgpd">Déjà inscrit?</div>
+									<div class="col-md-6">
+										<a type="submit" class="btn btn-sm wtextes" href="{{path('app_login')}}">Connexion</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{{ form_end(registrationForm) }}
+					</form>
+				</div>
+
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

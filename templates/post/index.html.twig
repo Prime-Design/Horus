@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	On Air Music
+{% endblock %}
+
+{% block body %}
+	<div class="container neons">
+		<div class="row neon">
+			<div class="col-md-12">
+				<h1 class="title1">On Air</h1>
+			</div>
+			<div class="col-md-12">
+				<h2 class="title1a">Music</h2>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid mt-5 mb-1">
+		<div class="container">
+			<div class="row marges shadow">
+				{% for post in posts %}
+					<div class="col-md-4 mb-3">
+						<div class="mb-3 irubrik">
+							{{ post.rubrik.name|upper }}
+						</div>
+						<a href="{{ path('show', {id: post.id}) }}">
+							<img class="img-fluid mb-3" src="{{ asset('divers/images/' ~ post.image) }}" alt="Mon Image" loading="lazy">
+						</a>
+						<div class="artist">
+							{{ post.artist }}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
