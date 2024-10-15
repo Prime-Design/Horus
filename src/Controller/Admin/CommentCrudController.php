@@ -48,7 +48,9 @@ class CommentCrudController extends AbstractCrudController
         return $actions
             ->disable(Action::NEW) // Désactiver la création
             ->disable(Action::EDIT)
-            ->setPermission(Action::DELETE, 'ROLE_ADMIN');
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN')
+            ->setPermission(Action::DELETE, 'ROLE_MODO');
+
 
     }
 }
